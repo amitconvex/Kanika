@@ -37,6 +37,13 @@ button {
     background:#ccc;
     position:absolute;
 }
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-120vh);
+        opacity:0;
+    }
+}
 </style>
 </head>
 
@@ -70,9 +77,23 @@ noBtn.addEventListener("touchstart", function(e){
 });
 
 function yesClicked() {
-    document.getElementById("question").innerText = "I knew it 😍";
-    document.getElementById("yes").style.display = "none";
-    document.getElementById("no").style.display = "none";
+    document.body.innerHTML = `
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;background:#ffe6eb;font-family:Arial;text-align:center;overflow:hidden;">
+        <h1 style="font-size:8vw;">I knew it 😍</h1>
+        <p style="font-size:5vw;">See you soon ❤️</p>
+    </div>
+    `;
+
+    for(let i=0;i<25;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.top = "100vh";
+        heart.style.fontSize = "24px";
+        heart.style.animation = "floatUp 3s linear forwards";
+        document.body.appendChild(heart);
+    }
 }
 </script>
 
